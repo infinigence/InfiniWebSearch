@@ -22,7 +22,7 @@ This project consists of the following parts:
 
 ```shell
 git clone xxx
-cd infini_websearch
+cd InfiniWebSearch
 conda create -n infini_websearch python=3.10 -y
 conda activate infini_websearch
 pip install -r requirements.txt
