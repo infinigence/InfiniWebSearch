@@ -1,6 +1,6 @@
 # InfiniWebSearch
 
-A demo built on Megrez-3B-Instruct, integrating a web search tool to enhance the model's question-and-answer capabilities.
+A demo built on [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct), integrating a web search tool to enhance the model's question-and-answer capabilities.
 
 [中文阅读](README.md).
 
@@ -21,7 +21,7 @@ This project consists of the following parts:
 ### Install
 
 ```shell
-git clone xxx
+git clone https://github.com/infinigence/InfiniWebSearch
 cd InfiniWebSearch
 conda create -n infini_websearch python=3.10 -y
 conda activate infini_websearch

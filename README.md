@@ -21,7 +21,7 @@ Read this in [English](README_en.md)
 ### 安装
 
 ```shell
-git clone xxx
+git clone https://github.com/infinigence/InfiniWebSearch
 cd InfiniWebSearch
 conda create -n infini_websearch python=3.10 -y
 conda activate infini_websearch
