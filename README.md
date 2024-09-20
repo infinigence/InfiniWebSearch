@@ -1,6 +1,6 @@
 # InfiniWebSearch
 
-基于Megrez-3B-Instruct搭建的demo, 接入网络搜索工具增强模型的问答能力.
+基于[Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct)搭建的demo, 接入网络搜索工具增强模型的问答能力.
 
 Read this in [English](README_en.md)
 
