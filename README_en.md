@@ -8,6 +8,13 @@ A demo built on [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3
     <img src="assets/websearch_demo.gif" width="75%" alt="Example GIF">
 </div>
 
+## Features
+
+1. **Intent Recognition**: LLM automatically determines when to invoke search tool calls.
+2. **Context Understanding**: Generates reasonable search keywords based on multi-turn dialogue.
+3. **Model Responses Include Citation Links**: The content of the responses can be traced back to their sources.
+4. **Plug-and-Play**: Control the activation or deactivation of WebSearch functionality through system prompts.
+
 ## Project Introduction
 
 This project consists of the following parts:

@@ -8,6 +8,13 @@ Read this in [English](README_en.md)
     <img src="assets/websearch_demo.gif" width="75%" alt="Example GIF">
 </div>
 
+## 特性
+
+1. **意图识别**: LLM自动决定搜索工具调用时机
+2. **上下文理解**: 根据多轮对话生成合理搜索关键词
+3. **模型回答包含引用**: 回答内容可查明出处
+4. **即插即用**: 通过system prompt控制WebSearch功能开启与否
+
 ## 项目简介
 
 本工程包含如下几部分:
