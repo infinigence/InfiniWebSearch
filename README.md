@@ -93,13 +93,14 @@ python search_service.py --port 8021 --chrome ./chrome-linux64/chrome --chromedr
 在[server.py](infini_websearch/configs/server.py)设置`MODEL_SERVER_URL`, 默认为 http://localhost:8011/v1/ . 设置`MODEL_NAME`为"megrez".
 
 ```shell
-python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model $MODEL_PATH --port 8011 --max-seq-len 4096 --trust_remote_code
+python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model $MODEL_PATH --port 8011 --max-seq-len 32768 --trust_remote_code --gpu-memory-utilization 0.8
 ```
 
 #### 3. 启动gradio服务
 
 运行[gradio_app.py](infini_websearch/gradio_app.py), 指定模型路径和端口号.
 ```shell
+export no_proxy="localhost,127.0.0.1"
 python gradio_app.py -m $MODEL_PATH --port 7860
 ```
 
@@ -107,7 +108,7 @@ python gradio_app.py -m $MODEL_PATH --port 7860
 
 ## 说明
 
-1. 由于模型有效最大输出长度较短(4k), 我们提供了`WEBPAGE_SUMMARY_MAX_INPUT_TOKENS`, `WEBPAGE_SUMMARY_MAX_OUTPUT_TOKENS`, `SESSION_MAX_INPUT_TOKENS`, `CHAT_MAX_OUTPUT_TOKENS`, `AGENT_MAX_OUTPUT_TOKENS`来控制模型的输入和输出长度. 使用`SESSION_WINDOW_SIZE`来保留最近的几轮对话历史.你可以在[server.py](infini_websearch/configs/server.py)中按需修改.
+1. 我们提供了`WEBPAGE_SUMMARY_MAX_INPUT_TOKENS`, `WEBPAGE_SUMMARY_MAX_OUTPUT_TOKENS`, `SESSION_MAX_INPUT_TOKENS`, `CHAT_MAX_OUTPUT_TOKENS`, `AGENT_MAX_OUTPUT_TOKENS`来控制模型的输入和输出长度. 使用`SESSION_WINDOW_SIZE`来保留最近的几轮对话历史.你可以在[server.py](infini_websearch/configs/server.py)中按需修改.
 2. 已经开始首轮对话后，点击websearch toggle切换状态会在后端清空对话历史, 但前端显示依然保留对话历史.
 3. 如果搜索服务出现异常(例如: 网页加载超时或服务器异常), 工具调用的observation会返回预定义好的信息(例如: "搜索页面加载超时, 请重试").你可以在[websearch.py](infini_websearch/actions/websearch.py)和[search_service.py](infini_websearch/service/search_service.py)中自定义边界条件的后处理逻辑.
 4. 使用[Serper](https://serper.dev/)时([search_service.py](infini_websearch/service/search_service.py)), 我们设置"hl"参数为"zh-CN"来尽可能得到中文搜索结果. 如果搜索结果英文网页太多, 可能导致模型用英文回答.

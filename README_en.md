@@ -93,7 +93,7 @@ Use vllm.entrypoints.openai.api_server to start the service and specify the port
 Set the `MODEL_SERVER_URL` in the file [server.py](infini_websearch/configs/server.py) with a default value of http://localhost:8011/v1/. Also, set the `MODEL_NAME` to "megrez".
 
 ```shell
-python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model $MODEL_PATH --port 8011 --max-seq-len 4096 --trust_remote_code
+python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model $MODEL_PATH --port 8011 --max-seq-len 4096 --trust_remote_code --gpu-memory-utilization 0.8
 ```
 
 #### 3. Starting Gradio Service
@@ -101,6 +101,7 @@ python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model 
 Run [gradio_app.py](infini_websearch/gradio_app.py), specify the model path and port number.
 
 ```shell
+export no_proxy="localhost,127.0.0.1"
 python gradio_app.py -m $MODEL_PATH --port 7860
 ```
 
@@ -108,7 +109,7 @@ After successful startup, you can use it by visiting http://localhost:7860/.
 
 ## Notes
 
-1. Due to the model's effective maximum output length being relatively short (4k), we provide `WEBPAGE_SUMMARY_MAX_INPUT_TOKENS`, `WEBPAGE_SUMMARY_MAX_OUTPUT_TOKENS`, `SESSION_MAX_INPUT_TOKENS`, `CHAT_MAX_OUTPUT_TOKENS`, `AGENT_MAX_OUTPUT_TOKENS` to control the input and output lengths of the model. Use `SESSION_WINDOW_SIZE` to retain the most recent dialogue history. You can modify these settings as needed in [server.py](infini_websearch/configs/server.py).
+1. We provide `WEBPAGE_SUMMARY_MAX_INPUT_TOKENS`, `WEBPAGE_SUMMARY_MAX_OUTPUT_TOKENS`, `SESSION_MAX_INPUT_TOKENS`, `CHAT_MAX_OUTPUT_TOKENS`, `AGENT_MAX_OUTPUT_TOKENS` to control the input and output lengths of the model. Use `SESSION_WINDOW_SIZE` to retain the most recent dialogue history. You can modify these settings as needed in [server.py](infini_websearch/configs/server.py).
 2. After starting the first round of dialogue, toggling the websearch state will clear the dialogue history on the backend, but the frontend will still display the dialogue history.
 3. If there is an exception with the search service (e.g. webpage loading timeout or server error), the observation from the tool call will return predefined messages (e.g. "The search page loading timed out, please try again"). You can customize the post-processing logic for boundary conditions in [websearch.py](infini_websearch/actions/websearch.py) and [search_service.py](infini_websearch/service/search_service.py).
 4. When using [Serper](https://serper.dev/) ([search_service.py](infini_websearch/service/search_service.py)), we set the "hl" parameter to "zh-CN" to obtain Chinese search results as much as possible. If there are too many English webpages in the search results, it may lead to the model responding in English.
