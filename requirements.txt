@@ -1,7 +1,7 @@
 aiohttp==3.9.5
 backoff==2.2.1
 fastapi==0.112.1
-gradio==4.42.0
+gradio==5.6.0
 gradio_toggle==1.0.4
 httpx==0.27.0
 multiprocess==0.70.16

@@ -106,6 +106,9 @@ class GoogleSearch(BaseAction):
                 tokenizer=tokenizer,
                 webpage_summary_max_input_tokens=self.webpage_summary_max_input_tokens,
             )
+            print("#######summary prompts[start]######")
+            print(summary_prompts)
+            print("#######summary prompts[end]######")
             response_message = llm_completion_funcion(messages=summary_prompts)
             summaries = [choice.text for choice in response_message.choices]
             context = "\n".join(

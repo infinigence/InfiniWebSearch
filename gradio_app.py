@@ -465,7 +465,10 @@ with gr.Blocks(
     with gr.Row(equal_height=False, variant="compact"):
         with gr.Column(scale=1.0, elem_classes="fullheight"):
             chatbot = gr.Chatbot(
-                type="messages", elem_classes="chatbot", label="infini-websearch"
+                type="messages",
+                elem_classes="chatbot",
+                label="infini-websearch",
+                autoscroll=True,
             )
 
     # conversation state vars
