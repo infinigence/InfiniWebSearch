@@ -46,7 +46,8 @@ class GoogleSearch(BaseAction):
                         "description": (
                             "Content that users want to search for, such as 'weather', 'current events', etc."
                             "If special characters such as '\n' appear in the search, "
-                            "these special characters must be ignored."
+                            "these special characters must be ignored.\n"
+                            "Chinese characters are preferred."
                         ),
                     }
                 },

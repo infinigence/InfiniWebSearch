@@ -93,7 +93,7 @@ Use vllm.entrypoints.openai.api_server to start the service and specify the port
 Set the `MODEL_SERVER_URL` in the file [server.py](infini_websearch/configs/server.py) with a default value of http://localhost:8011/v1/. Also, set the `MODEL_NAME` to "megrez".
 
 ```shell
-python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model $MODEL_PATH --port 8011 --max-seq-len 4096 --trust_remote_code --gpu-memory-utilization 0.8
+python -m vllm.entrypoints.openai.api_server --served-model-name megrez --model $MODEL_PATH --port 8011 --max-seq-len 32768 --trust_remote_code --gpu-memory-utilization 0.8
 ```
 
 #### 3. Starting Gradio Service
@@ -113,6 +113,7 @@ After successful startup, you can use it by visiting http://localhost:7860/.
 2. After starting the first round of dialogue, toggling the websearch state will clear the dialogue history on the backend, but the frontend will still display the dialogue history.
 3. If there is an exception with the search service (e.g. webpage loading timeout or server error), the observation from the tool call will return predefined messages (e.g. "The search page loading timed out, please try again"). You can customize the post-processing logic for boundary conditions in [websearch.py](infini_websearch/actions/websearch.py) and [search_service.py](infini_websearch/service/search_service.py).
 4. When using [Serper](https://serper.dev/) ([search_service.py](infini_websearch/service/search_service.py)), we set the "hl" parameter to "zh-CN" to obtain Chinese search results as much as possible. If there are too many English webpages in the search results, it may lead to the model responding in English.
+5. If the web search is successful but the model indicates that the search results do not contain relevant information to answer the question, you can check the summary information of each webpage printed in the console. If the summary shows "No relevant content", it means either the original webpage does not contain information related to the question, or the model failed to extract relevant information from the webpage.
 
 ## License
 

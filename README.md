@@ -112,6 +112,7 @@ python gradio_app.py -m $MODEL_PATH --port 7860
 2. 已经开始首轮对话后，点击websearch toggle切换状态会在后端清空对话历史, 但前端显示依然保留对话历史.
 3. 如果搜索服务出现异常(例如: 网页加载超时或服务器异常), 工具调用的observation会返回预定义好的信息(例如: "搜索页面加载超时, 请重试").你可以在[websearch.py](infini_websearch/actions/websearch.py)和[search_service.py](infini_websearch/service/search_service.py)中自定义边界条件的后处理逻辑.
 4. 使用[Serper](https://serper.dev/)时([search_service.py](infini_websearch/service/search_service.py)), 我们设置"hl"参数为"zh-CN"来尽可能得到中文搜索结果. 如果搜索结果英文网页太多, 可能导致模型用英文回答.
+5. 如果网页搜索成功了, 但是模型表示搜索结果中没有包含回答问题的相关信息, 可以检查控制台打印的各网页的摘要信息. 如果摘要信息显示"无相关内容", 代表原网页没有与问题相关的信息, 或者模型提取与问题相关信息失败.
 
 ## 协议
 
