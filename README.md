@@ -89,7 +89,7 @@ python search_service.py --port 8021 --chrome ./chrome-linux64/chrome --chromedr
 
 #### 2. 启动模型服务
 
-使用vllm.entrypoints.openai.api_server启动服务并制定端口号, `--served-model-name`设置为megrez, `--max-seq-len`设置为4096.
+使用vllm.entrypoints.openai.api_server启动服务并制定端口号, `--served-model-name`设置为megrez, `--max-seq-len`设置为32768.
 在[server.py](infini_websearch/configs/server.py)设置`MODEL_SERVER_URL`, 默认为 http://localhost:8011/v1/ . 设置`MODEL_NAME`为"megrez".
 
 ```shell

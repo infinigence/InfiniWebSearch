@@ -89,7 +89,7 @@ python search_service.py --port 8021 --chrome ./chrome-linux64/chrome --chromedr
 
 #### 2. Starting Model Service
 
-Use vllm.entrypoints.openai.api_server to start the service and specify the port number. Set the `--served-model-name` to "megrez" and `--max-seq-len` to 4096.
+Use vllm.entrypoints.openai.api_server to start the service and specify the port number. Set the `--served-model-name` to "megrez" and `--max-seq-len` to 32768.
 Set the `MODEL_SERVER_URL` in the file [server.py](infini_websearch/configs/server.py) with a default value of http://localhost:8011/v1/. Also, set the `MODEL_NAME` to "megrez".
 
 ```shell
